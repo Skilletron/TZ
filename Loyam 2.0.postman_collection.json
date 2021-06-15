@@ -1,0 +1,1408 @@
+{
+	"info": {
+		"_postman_id": "6fe4d20d-118b-4b84-9bff-1391dd1ad52d",
+		"name": "Loyam 2.0",
+		"description": "Loyam 2.0 API Example.\n\nПри c API работе используется OAuth 2.0 протокол авторизации.\n\n\nclient_id: loyam_test\n\nclient_secret: 0IcbmorPNeuEcywxvaGQzznSd3pIl8BF12hT8eeExuZ2G9XYJH7YHeQh",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Accounting",
+			"item": [
+				{
+					"name": "Registrate",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"tests['Status Code is 200'] = (responseCode.code == 200);\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    if (pm.response.to.have.status(200)) {\r",
+									"\r",
+									"        var jsonData = JSON.parse(responseBody);\r",
+									"\r",
+									"        console.log(jsonData)\r",
+									"        //set an environment variable\r",
+									"        postman.setEnvironmentVariable(\"access_token\", jsonData.access_token);\r",
+									"        postman.setEnvironmentVariable(\"refresh_token\", jsonData.refresh_token);\r",
+									"    }\r",
+									"    else { console.log(pm.response.status) }\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "client_id",
+									"value": "{{client_id}}",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "{{client_secret}}",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "Tester35",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123123",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "tester35@test.co",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/users",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						},
+						"description": "Регистрация нового пользователя, используя связку client_id/client_secret."
+					},
+					"response": [
+						{
+							"name": "Registrate",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "client_id",
+											"value": "{{client_id}}",
+											"type": "text"
+										},
+										{
+											"key": "client_secret",
+											"value": "{{client_secret}}",
+											"type": "text"
+										},
+										{
+											"key": "username",
+											"value": "Tester35",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "123123",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "tester35@test.co",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base_url}}/api/users",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"users"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx-reuseport/1.13.4"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 17 May 2021 11:36:41 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "319"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=30"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.4.8"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, must-revalidate, max-age=0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 176006,\n    \"username\": \"Tester35\",\n    \"email\": \"tester35@test.co\",\n    \"status\": 1,\n    \"level\": 1,\n    \"mood\": 0,\n    \"region\": \"RU-MOW\",\n    \"avatar\": \"\",\n    \"currenciesRegards\": 0,\n    \"card_last_changed_at\": null,\n    \"role\": 1,\n    \"leaderboardPosition\": 23,\n    \"currencies\": {\n        \"point\": 100,\n        \"stickers\": 0\n    },\n    \"emailconfirmed\": 0,\n    \"zone\": 1,\n    \"prevLevelPoints\": 100,\n    \"nextLevelPoints\": 1100\n}"
+						}
+					]
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"tests['Status Code is 200'] = (responseCode.code == 200);\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    if (pm.response.to.have.status(200)) {\r",
+									"\r",
+									"        var jsonData = JSON.parse(responseBody);\r",
+									"\r",
+									"        console.log(jsonData)\r",
+									"        //set an environment variable\r",
+									"        postman.setEnvironmentVariable(\"access_token\", jsonData.access_token);\r",
+									"        postman.setEnvironmentVariable(\"refresh_token\", jsonData.refresh_token);\r",
+									"    }\r",
+									"    else { console.log(pm.response.status) }\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "{{client_id}}",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "{{client_secret}}",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "Tester33",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123123",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/oauth/token",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"oauth",
+								"token"
+							]
+						},
+						"description": "Вход пользователя, используя связку логин/пароль."
+					},
+					"response": [
+						{
+							"name": "Login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "grant_type",
+											"value": "password",
+											"type": "text"
+										},
+										{
+											"key": "client_id",
+											"value": "{{client_id}}",
+											"type": "text"
+										},
+										{
+											"key": "client_secret",
+											"value": "{{client_secret}}",
+											"type": "text"
+										},
+										{
+											"key": "username",
+											"value": "Tester33",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "123123",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base_url}}/oauth/token",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"oauth",
+										"token"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx-reuseport/1.13.4"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 17 May 2021 08:54:35 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1786"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=30"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.4.8"
+								},
+								{
+									"key": "pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-store, private"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "55"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"token_type\": \"Bearer\",\n    \"expires_in\": 1296000,\n    \"access_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJsb3lhbV90ZXN0IiwianRpIjoiM2JjYjQ3YmU4ZjhiNDQ3YWEwYTliOTRmZDA1YzczMTZhNDAxMTc2OGJhODg5ZmQ0NjUwNDM3NTAzZTFhZTVhYWZiNDRjMmE3MjRmMDMxMTQiLCJpYXQiOjE2MjEyNDE2NzUsIm5iZiI6MTYyMTI0MTY3NSwiZXhwIjoxNjIyNTM3Njc1LCJzdWIiOiIxNzYwMDAiLCJzY29wZXMiOltdfQ.Lyw_gg2-U9ZL1AaV-HZDYtPEy2SFUPc3JJaZrXXVQ-jM0iDzXAxuLD7oybla6rftLg3eV_MHD9o73lIBSLTxOFLdzccGyap5sqHE4Nr6jinYOdruBWdzPmIsaBVFEg_XSKBTtWBec7LtVn_AUHej9N6klqBQqVkuxDvu4o_lwLuXs_F621RtvOxogOplUfc_88Jxs8Xu-pjVa7eTzdS0fL1Y0ZmNLuPkxMjy-A_YfO0MwaqgJOtlMazBrBO86b8VI5T17ahQpxGgh6-ZnLrjyBg2MX4oG5S7x_NxIeyjdF8GeGgwY57vNireklSDOEo2aJNF45AmQEbQ1MnS5lA9o9mONcVqwbkfYTiVf_JKIwKHP6TOI2yhqCpkRg2gTQuxHubag0hqArqxxuaupss_LXO7XiQd6gIiFvKgr-S05tqLG8NK0tRfD09OuuL4plaMtIJQuvr7JCH1zkyoQFxllInfBTOx_Hu3xL6xKTG0_T3eGzxqzgugq1UYeef4hxvYZiXhMKVB-HWPTIcrw-f1Z0fzC5R95HDZezxvXTNU1QvuP_YWjg0WRqJpdCt0eZpXnb4KknEPMlztqZIzWTtSrg60f09hqugw-aJqVaTOaIUfBUaX71zW1or99WMznJj1-xM_xsoZm0G0yFjCRMyKCvaPGVokfl-eGvh7GXFey7E\",\n    \"refresh_token\": \"def502006ff9d478c0071fda981f53e90a475716a0727326c97dc4e8802bd3ce263ddbb572e4688fdcc066ae9ec9e02ed97dc8367feb7902f7b6e79249587e8ab4d3e9294f5c1601a37c6a743f4b5aa7bdfe6376aed42d369a9c29f59e3050cc9bd624acda27da52043c018cfedeef712718e04aa528b119db7a9896dccdfbafe6b4ee29377a60b9d73716683190f3ca233c31062aab373b6930f9f4eb510a16517e4a54172cca879c95a25ed3502b01594c555174361e6030c7c9a0c881df5092fdc33162d85a71c18dad1e4a7341f94c310331422b4d616bb3e8d92afac3c485f25a8cb52f3c8805fd76d8ffe9d2b5912d5a105746220a09ffcfc4e2277efb357abe6387faa06f96ffd18915039dcb78ba3c8ab5cdddcd04bb63c118fc3504c202503f4ac377d666fe0043aa3767aad2393f29aca89bfdb270a1da1ecff503a497d2303ad5888f585a817b064d99af0728a36c00315269c2baed0be3ef75ce9fb9ab7f751d1f8d35dbc4c47a2219\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Refresh token",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "grant_type",
+									"value": "refresh_token",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "{{client_id}}",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "{{client_secret}}",
+									"type": "text"
+								},
+								{
+									"key": "refresh_token",
+									"value": "{{refresh_token}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/oauth/token",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"oauth",
+								"token"
+							]
+						},
+						"description": "Обновление acces_token, используя refresh token."
+					},
+					"response": []
+				},
+				{
+					"name": "Current user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJsb3lhbV90ZXN0IiwianRpIjoiZDJhNTg5ZTc4YzA3ZDNiYWYzMGU0MGM5NzU5ZGViZTc5NDYyMzU1Yzc0MDJkMGEzYjJmOWM0ZGY4YjQxNDQzODRlZGZiMTAyMjgxMjY3YmIiLCJpYXQiOjE2MjEyNTE0MzUsIm5iZiI6MTYyMTI1MTQzNSwiZXhwIjoxNjIyNTQ3NDM1LCJzdWIiOiIxNzYwMDAiLCJzY29wZXMiOltdfQ.h02hVZAB53CgxZ2h3YkXwdnO56GAgiUhUYT5VVpHqtl3plzv-r1qWeMe1NtS5-ISE-CdJcEX2MpCgDCp67H0LA3v3AmKCLjDsm0R9JG1Te9uEjuQte9bI7XDZY2-0LswfRCGknhdjuC5V48an-ue7Tpzt3ECC98IUhiX_2pmXa-H8g535K18vxdMAe3tqPlDm24K9KLPUG08MXVqLtlZu7e-ZcLMiEnivYPr3yal0pwaxGodt7M5M9vuWzn_jwkQv-5jmSWMT4oMQI90arc4HXwrBxYVxl-1lGrXe2Xqz4GZR1rv-fAiI92WI3ZxH6v892P8g86RrTf5KJVARcEyKHc79td2VzN28Xoe4OYdl6Bi8ARLqWy8tj7cyQsZ0Ejy0QaF3B_W7ptVTD_9EpRc4_gkImDPZIZtGZkiGIv35dCSgpz25eKJe7s-Dsx_bsltg-8LYz6Pbt14AFapdZTxV7erfKfI7Pjmh4QJQh60kjkGGsFeOGP0q2WJ57H5WuWS8syGB96WT1gJvjpcxrvBbDYFToBUMhLJ7TbgjAiN6J8BJSYfpT0Yhwai47u5LHOXJ277k9_KMgbKDr-8jCYt2IJB0q89p07WJYoxaR3vNheEFvdM1dCD3vysKQLQTU5jcauvOniGcHe0zoznPwcQ0__CLgmJt4gxsa5gbBl4H9w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/users/current",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"current"
+							]
+						},
+						"description": "Получить данные о текущем пользователе, используя его {access_token}.\n\nВ Header добавляется параметр- 'AUTHORIZATION' содержащий - Bearer {access_token}.\n\nExample - \"Authorization: Bearer ACCESS_TOKEN\""
+					},
+					"response": [
+						{
+							"name": "Current user",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/users/current",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"users",
+										"current"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx-reuseport/1.13.4"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 17 May 2021 11:37:18 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "319"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=30"
+								},
+								{
+									"key": "Vary",
+									"value": "Authorization"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.4.8"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 176000,\n    \"username\": \"Tester33\",\n    \"email\": \"tester33@test.co\",\n    \"status\": 1,\n    \"level\": 1,\n    \"mood\": 0,\n    \"region\": \"RU-MOW\",\n    \"avatar\": \"\",\n    \"currenciesRegards\": 0,\n    \"card_last_changed_at\": null,\n    \"role\": 1,\n    \"leaderboardPosition\": 21,\n    \"currencies\": {\n        \"point\": 100,\n        \"stickers\": 0\n    },\n    \"emailconfirmed\": 0,\n    \"zone\": 1,\n    \"prevLevelPoints\": 100,\n    \"nextLevelPoints\": 1100\n}"
+						}
+					]
+				},
+				{
+					"name": "Update user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"collections\": \"[\\\"test\\\"]\",\r\n    \"password\": null,\r\n    \"cardNo\": null,\r\n    \"avatar\": \"1\",\r\n    \"region\": null,\r\n    \"pin\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/users/current",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"current"
+							],
+							"query": [
+								{
+									"key": "collections",
+									"value": "Test",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Обновление данных пользователя."
+					},
+					"response": []
+				},
+				{
+					"name": "Approve email",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "Akim",
+									"type": "text"
+								},
+								{
+									"key": "hash",
+									"value": "34c6a43777acc2fc8676e45f829cc68c7c305692",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "{{client_id}}",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "{{client_secret}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/users/approveemail",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"approveemail"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Approve email Again",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/users/approveemail/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"approveemail",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Send Email to restore user",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "viz87636@zwoho.com",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "{{client_id}}",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "{{client_secret}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/users/restore",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"restore"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Check pin to restore",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "mobile",
+									"type": "string"
+								}
+							]
+						},
+						"method": "HEAD",
+						"header": [
+							{
+								"key": "email",
+								"value": "Zaytsev.Akim@yandex.ru",
+								"type": "text"
+							},
+							{
+								"key": "pin",
+								"value": "9591",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/users/restore/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"restore",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Restore password",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "mobile",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "Zaytsev.Akim@yandex.ru",
+									"type": "text"
+								},
+								{
+									"key": "pin",
+									"value": "9570",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "111111",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/users/restore/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"restore",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Примеры API для работы с аккаунтингом.\n\nРегистрация/вход/обновления сессий/изменение данных пользователя.",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Collection",
+			"item": [
+				{
+					"name": "Collection List",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/sets",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"sets"
+							]
+						},
+						"description": "Получить список коллекций."
+					},
+					"response": [
+						{
+							"name": "Collection List",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/sets",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"sets"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx-reuseport/1.13.4"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 17 May 2021 11:37:30 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1198"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=30"
+								},
+								{
+									"key": "Vary",
+									"value": "Authorization"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.4.8"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "58"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 3,\n        \"name\": \"Коллекция 1\",\n        \"catalogName\": \"Коллекция\",\n        \"haveItems\": \"0\",\n        \"totalItems\": 3,\n        \"previewImage\": \"https://test.loy.am//storage/sets/3/photo.png\",\n        \"backgroundImage\": \"https://test.loy.am//storage/sets/3/photobg.png\",\n        \"collectionIcon\": \"https://test.loy.am//storage/sets/3/photo-icon.png\"\n    },\n    {\n        \"id\": 4,\n        \"name\": \"Коллекция 2\",\n        \"catalogName\": \"Коллекция\",\n        \"haveItems\": 0,\n        \"totalItems\": 0,\n        \"previewImage\": \"https://test.loy.am//storage/sets/4/photo.png\",\n        \"backgroundImage\": \"https://test.loy.am//storage/sets/4/photobg.png\",\n        \"collectionIcon\": \"https://test.loy.am//storage/sets/4/photo-icon.png\"\n    },\n    {\n        \"id\": 5,\n        \"name\": \"Коллекция 3\",\n        \"catalogName\": \"Коллекция 2\",\n        \"haveItems\": \"0\",\n        \"totalItems\": 1,\n        \"previewImage\": \"https://test.loy.am//storage/sets/5/photo.png\",\n        \"backgroundImage\": \"https://test.loy.am//storage/sets/5/photobg.png\",\n        \"collectionIcon\": \"https://test.loy.am//storage/sets/5/photo-icon.png\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Collection Targer",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/sets/5",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"sets",
+								"5"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Collection Targer",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/sets/5",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"sets",
+										"5"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx-reuseport/1.13.4"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 17 May 2021 11:37:35 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "369"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=30"
+								},
+								{
+									"key": "Vary",
+									"value": "Authorization"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.4.8"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "57"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 5,\n    \"name\": \"Коллекция 3\",\n    \"catalogName\": \"Коллекция 2\",\n    \"previewImage\": \"https://test.loy.am//storage/sets/5/photo.png\",\n    \"backgroundImage\": \"https://test.loy.am//storage/sets/5/photobg.png\",\n    \"collectionIcon\": \"https://test.loy.am//storage/sets/5/photo-icon.png\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Collection Element (Subjects)",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base_url}}/api/subjects",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"subjects"
+							],
+							"query": [
+								{
+									"key": "favorite",
+									"value": "true",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Получить объекты относящиеся к конкретному элементу коллекции."
+					},
+					"response": [
+						{
+							"name": "Collection Element (Subjects)",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/subjects",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"subjects"
+									],
+									"query": [
+										{
+											"key": "favorite",
+											"value": "true",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx-reuseport/1.13.4"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 17 May 2021 11:37:40 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "4518"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=30"
+								},
+								{
+									"key": "Vary",
+									"value": "Authorization"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.4.8"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "56"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 4,\n        \"code\": \"Apple Juice\",\n        \"sets_id\": 3,\n        \"name\": \"Apple Juice\",\n        \"description\": \"<size=135><style=\\\"HelveticaBold\\\">Яблочный сок 200мл</style></size><br><style=\\\"CollectionItemMark\\\">HONEY KID<br></style><br><style=\\\"Normal\\\"><style=\\\"CollectionItemDescriptionPreTitle\\\">Состав:</style>Яблочный сок, вода <br><style=\\\"CollectionItemDescriptionPreTitle\\\">Производитель:</style> Фармалакт<br><style=\\\"CollectionItemDescriptionPreTitle\\\">Бренд:</style> Honey Kid<br><style=\\\"CollectionItemDescriptionPreTitle\\\">Объем:</style> 200 мл<br><style=\\\"CollectionItemDescriptionPreTitle\\\">Страна:</style> Россия <br>\",\n        \"price\": \"50\",\n        \"rating\": \"4.9\",\n        \"type\": \"collection\",\n        \"bundle_android_name\": null,\n        \"manifest_android_name\": null,\n        \"bundle_ios_name\": null,\n        \"manifest_ios_name\": null,\n        \"buyed\": false,\n        \"favorite\": true,\n        \"photo\": \"https://test.loy.am//storage/subjects/4/photo.png\"\n    },\n    {\n        \"id\": 5,\n        \"code\": \"Cherry Juice\",\n        \"sets_id\": 3,\n        \"name\": \"Cherry Juice\",\n        \"description\": \"<size=135><style=\\\"HelveticaBold\\\">Вишнёвый сок 200мл</style></size><br><style=\\\"CollectionItemMark\\\">HONEY KID<br></style><br><style=\\\"Normal\\\"><style=\\\"CollectionItemDescriptionPreTitle\\\">Состав:</style>Вишнёвый сок, вода <br><style=\\\"CollectionItemDescriptionPreTitle\\\">Производитель:</style> Фармалакт<br><style=\\\"CollectionItemDescriptionPreTitle\\\">Бренд:</style> Honey Kid<br><style=\\\"CollectionItemDescriptionPreTitle\\\">Объем:</style> 200 мл<br><style=\\\"CollectionItemDescriptionPreTitle\\\">Страна:</style> Россия <br>\",\n        \"price\": \"49\",\n        \"rating\": \"5.0\",\n        \"type\": \"collection\",\n        \"bundle_android_name\": null,\n        \"manifest_android_name\": null,\n        \"bundle_ios_name\": null,\n        \"manifest_ios_name\": null,\n        \"buyed\": false,\n        \"favorite\": false,\n        \"photo\": \"https://test.loy.am//storage/subjects/5/photo.png\"\n    },\n    {\n        \"id\": 6,\n        \"code\": \"Ris Kasha\",\n        \"sets_id\": 3,\n        \"name\": \"Ris Kasha\",\n        \"description\": \"<size=135><style=\\\"HelveticaBold\\\">Каша рис. мол. обог. стер. 200мл</style></size><br><style=\\\"CollectionItemMark\\\">HONEY KID<br></style><br><style=\\\"Normal\\\"><style=\\\"CollectionItemDescriptionPreTitle\\\">Состав:</style> Молоко сухое цельное, мука рисовая, фруктоза, крахмал картофельный, пребиотик- инулин, вода <br><style=\\\"CollectionItemDescriptionPreTitle\\\">Производитель:</style> Фармалакт<br><style=\\\"CollectionItemDescriptionPreTitle\\\">Бренд:</style> Honey Kid<br><style=\\\"CollectionItemDescriptionPreTitle\\\">Объем:</style> 200 мл<br><style=\\\"CollectionItemDescriptionPreTitle\\\">Страна:</style> Россия <br>\",\n        \"price\": \"99.9\",\n        \"rating\": \"4.8\",\n        \"type\": \"collection\",\n        \"bundle_android_name\": null,\n        \"manifest_android_name\": null,\n        \"bundle_ios_name\": null,\n        \"manifest_ios_name\": null,\n        \"buyed\": false,\n        \"favorite\": false,\n        \"photo\": \"https://test.loy.am//storage/subjects/6/photo.png\"\n    },\n    {\n        \"id\": 7,\n        \"code\": \"Тест2\",\n        \"sets_id\": 5,\n        \"name\": \"Тест\",\n        \"description\": \"Honney Kid\",\n        \"price\": \"111\",\n        \"rating\": \"1\",\n        \"type\": \"primary\",\n        \"bundle_android_name\": null,\n        \"manifest_android_name\": null,\n        \"bundle_ios_name\": null,\n        \"manifest_ios_name\": null,\n        \"buyed\": false,\n        \"favorite\": false,\n        \"photo\": null\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Favorite Collection Element",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/subjects/4/actions/favorite",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"subjects",
+								"4",
+								"actions",
+								"favorite"
+							]
+						},
+						"description": "Добавить элемент коллекции по ID в избранные."
+					},
+					"response": [
+						{
+							"name": "Favorite Collection Element",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/subjects/4/actions/favorite",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"subjects",
+										"4",
+										"actions",
+										"favorite"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx-reuseport/1.13.4"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 17 May 2021 11:37:44 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1193"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=30"
+								},
+								{
+									"key": "Vary",
+									"value": "Authorization"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.4.8"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "55"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 4,\n    \"code\": \"Apple Juice\",\n    \"sets_id\": 3,\n    \"name\": \"Apple Juice\",\n    \"description\": \"<size=135><style=\\\"HelveticaBold\\\">Яблочный сок 200мл</style></size><br><style=\\\"CollectionItemMark\\\">HONEY KID<br></style><br><style=\\\"Normal\\\"><style=\\\"CollectionItemDescriptionPreTitle\\\">Состав:</style>Яблочный сок, вода <br><style=\\\"CollectionItemDescriptionPreTitle\\\">Производитель:</style> Фармалакт<br><style=\\\"CollectionItemDescriptionPreTitle\\\">Бренд:</style> Honey Kid<br><style=\\\"CollectionItemDescriptionPreTitle\\\">Объем:</style> 200 мл<br><style=\\\"CollectionItemDescriptionPreTitle\\\">Страна:</style> Россия <br>\",\n    \"price\": \"50\",\n    \"rating\": \"4.9\",\n    \"type\": \"collection\",\n    \"bundle_android_name\": null,\n    \"manifest_android_name\": null,\n    \"bundle_ios_name\": null,\n    \"manifest_ios_name\": null,\n    \"buyed\": false,\n    \"favorite\": true\n}"
+						}
+					]
+				},
+				{
+					"name": "Unfavorite Collection Element Copy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/subjects/4/actions/unfavorite",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"subjects",
+								"4",
+								"actions",
+								"unfavorite"
+							]
+						},
+						"description": "Убрать элемент коллекции из избранных."
+					},
+					"response": []
+				}
+			],
+			"description": "Примеры API для взаимодействия с коллекциями."
+		}
+	],
+	"auth": {
+		"type": "oauth2",
+		"oauth2": [
+			{
+				"key": "addTokenTo",
+				"value": "header",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
